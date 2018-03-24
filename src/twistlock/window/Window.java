@@ -1,7 +1,7 @@
 package twistlock.window;
 
-import javax.swwing.JFrame;
-import java.awt.color;
+import javax.swing.JFrame;
+import java.awt.Color;
 
 public class Window
 {
