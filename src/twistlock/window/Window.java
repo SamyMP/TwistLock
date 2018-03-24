@@ -8,10 +8,8 @@ import java.awt.Color;
  */
 public class Window extends JFrame
 {
-	private static final Color player1Color = Color.red;
-	private static final Color player2Color = Color.green;
-	private static final Color player3Color = Color.blue;
-	private static final Color player4Color = Color.yellow;
+	private static final Color[] playerColors =
+		new Color[] { Color.red, Color.green, Color.blue, Color.yellow };
 
 	JFrame frame;
 
