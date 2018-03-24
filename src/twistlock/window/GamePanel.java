@@ -2,6 +2,9 @@ package twistlock.window;
 
 import javax.swing.JPanel;
 
+/**
+ * TODO
+ */
 class GamePanel extends JPanel
 {
 	// on y met 4 PlayerPanel (1/joueur)

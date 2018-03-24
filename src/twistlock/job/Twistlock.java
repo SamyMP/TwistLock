@@ -1,5 +1,8 @@
 package twistlock.job;
 
+/**
+ * TODO
+ */
 public class Twistlock
 {
 	/**
@@ -13,6 +16,10 @@ public class Twistlock
 		controllingPlayer = -1;
 	}
 
+	/**
+	 * TODO
+	 * @param player [description]
+	 */
 	public void capture(Player player)
 	{
 		player.useTwistlock();

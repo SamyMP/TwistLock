@@ -3,6 +3,9 @@ package twistlock.window;
 import javax.swing.JFrame;
 import java.awt.Color;
 
+/**
+ * TODO
+ */
 public class Window extends JFrame
 {
 	private static final Color player1Color = Color.red;
@@ -16,7 +19,7 @@ public class Window extends JFrame
 	{
 		super("TwistLock");
 
-		
+
 
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setVisible(true);

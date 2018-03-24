@@ -10,6 +10,11 @@ import javax.swing.JPanel;
 
 import twistlock.job.Player;
 
+/**
+ * TODO
+ * 		draw()
+ * 		comments
+ */
 class PlayerPanel extends JPanel
 {
 	BufferedImage image;
