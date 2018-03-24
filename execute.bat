@@ -1,3 +1,3 @@
 cd bin/
-java class.a.executer
+java twistlock.Controller
 cd ..
