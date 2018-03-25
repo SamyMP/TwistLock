@@ -31,6 +31,11 @@ public class Controller
 
 	public void createGame(String... players)
 	{
+		createGame((int)(Math.random() * 10) + 6, (int)(Math.random() * 8) + 3, players);
+	}
+
+	public void createGame(int width, int height, String... players)
+	{
 		this.players = new Player[players.length];
 		for (int i = 0; i < this.players.length; i++)
 		{
@@ -39,6 +44,10 @@ public class Controller
 
 		int rowCount = (int)(Math.random() * 10) + 6;
 		int colCount = (int)(Math.random() * 8) + 3;
+
+
+		rowCount = height;
+		colCount = width;
 
 		Twistlock[][] tls = new Twistlock[colCount + 1][rowCount + 1];
 		for (int i = 0; i < tls.length; i++)
@@ -57,6 +66,15 @@ public class Controller
 				containers[i][j] = new Container(i, j, tls[i][j], tls[i + 1][j], tls[i][j + 1], tls[i + 1][j + 1]);
 			}
 		}
+
+		containers[1][8].capture(1, this.players[0]);
+		containers[1][7].capture(3, this.players[1]);
+		containers[1][7].capture(1, this.players[0]);
+		containers[3][6].capture(1, this.players[1]);
+		containers[1][7].capture(2, this.players[0]);
+		containers[3][6].capture(4, this.players[1]);
+		window.repaint();
+		System.out.println(containers[0][7].getPlayer());
 	}
 
 	public Player[] getPlayers()
