@@ -13,6 +13,9 @@ public class Controller
 	private static Controller singleton;
 
 	private Player[] players;
+
+	private int actualPlayer;
+
 	private Container[][] containers;
 	private Window window;
 
@@ -36,6 +39,8 @@ public class Controller
 
 	public void createGame(int width, int height, String... players)
 	{
+		this.actualPlayer = 0;
+
 		this.players = new Player[players.length];
 		for (int i = 0; i < this.players.length; i++)
 		{
@@ -75,6 +80,38 @@ public class Controller
 		containers[3][2].capture(4, this.players[1]);
 		window.repaint();
 		System.out.println(containers[0][7].getPlayer());
+	}
+
+	public boolean isFinished()
+	{
+		boolean isFinished = true;
+
+		for (int i = 0 ; i < containers.length ; i++)
+			for (int j = 0 ; j < containers[i].length ; j++)
+				for (int coin = 0 ; coin < 4 ; coin++)
+					if (containers[i][j].getLock(coin).getPlayer() == -1)
+						isFinished = false;
+
+		if (isFinished)
+			return true;
+
+		for (int i = 0 ; i < players.length ; i++)
+			if (players[i].hasTwistlock())
+				return false;
+
+		return true;
+	}
+
+	public void doAction(int row, int col, int coin)
+	{
+		containers[col][row].capture(coin, this.players[this.actualPlayer]);
+
+		if (! isFinished())
+			do
+			{
+				this.actualPlayer = (this.actualPlayer + 1 ) % this.players.length;
+
+			} while ( ! this.players[this.actualPlayer].hasTwistlock());
 	}
 
 	public Player[] getPlayers()
