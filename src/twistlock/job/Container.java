@@ -1,5 +1,9 @@
 package twistlock.job;
 
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * TODO
  */
@@ -46,6 +50,10 @@ public class Container
 		player = -1;
 		this.row = row;
 		this.column = column;
+		nw.addContainer(this);
+		ne.addContainer(this);
+		se.addContainer(this);
+		sw.addContainer(this);
 		corners = new Twistlock[] { nw, ne, se, sw };
 		value = (int)(Math.random() * (MAX_VALUE - MIN_VALUE + 1)) + MIN_VALUE;
 	}
@@ -67,7 +75,7 @@ public class Container
 	{
 		try
 		{
-			return corners[pos];
+			return corners[pos - 1];
 		}
 		catch (Exception e)
 		{
@@ -82,6 +90,39 @@ public class Container
 		{
 			lock.capture(player);
 		}
+	}
+
+	void calcOwner()
+	{
+		Map<Integer, Integer> control = new HashMap<Integer, Integer>();
+		for (Twistlock twistlock : corners)
+		{
+			if (control.get(twistlock.getPlayer()) == null)
+			{
+				control.put(twistlock.getPlayer(), 0);
+			}
+			control.put(twistlock.getPlayer(), control.get(twistlock.getPlayer()) + 1);
+		}
+
+		int max = 0;
+		int maxId = -1;
+
+		for (Integer i : control.keySet())
+		{
+			if (i != -1)
+			{
+				if (control.get(i) == max)
+				{
+					maxId = -1;
+				}
+				if (control.get(i) > max)
+				{
+					max = control.get(i);
+					maxId = i;
+				}
+			}
+		}
+		player = maxId;
 	}
 
 	/**

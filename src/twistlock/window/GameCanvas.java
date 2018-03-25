@@ -109,9 +109,9 @@ class GameCanvas extends JPanel
 				}
 				g2d.drawString(cont.getValue() + "", (int)((i + 0.5) * width) + MARGIN_SIDE, (int)((j + 0.5) * height) + MARGIN_TOP);
 
-				if (cont.getLock(0).getPlayer() >= 0)
+				if (cont.getLock(1).getPlayer() >= 0)
 				{
-					g2d.setColor(Window.playerColors[cont.getLock(0).getPlayer()]);
+					g2d.setColor(Window.playerColors[cont.getLock(1).getPlayer()]);
 					g2d.fillOval(
 						(int)(i * width) + MARGIN_SIDE - BORDER_RADIUS,
 						(int)(j * height) + MARGIN_TOP - BORDER_RADIUS,
@@ -120,9 +120,9 @@ class GameCanvas extends JPanel
 					g2d.setColor(Color.black);
 				}
 
-				if (i == containers.length - 1 && cont.getLock(1).getPlayer() >= 0)
+				if (i == containers.length - 1 && cont.getLock(2).getPlayer() >= 0)
 				{
-					g2d.setColor(Window.playerColors[cont.getLock(1).getPlayer()]);
+					g2d.setColor(Window.playerColors[cont.getLock(2).getPlayer()]);
 					g2d.fillOval(
 						(int)((i + 1) * width) + MARGIN_SIDE - BORDER_RADIUS,
 						(int)(j * height) + MARGIN_TOP - BORDER_RADIUS,
@@ -131,9 +131,9 @@ class GameCanvas extends JPanel
 					g2d.setColor(Color.black);
 				}
 
-				if (i == containers.length - 1 && j == containers[i].length - 1 && cont.getLock(2).getPlayer() >= 0)
+				if (i == containers.length - 1 && j == containers[i].length - 1 && cont.getLock(3).getPlayer() >= 0)
 				{
-					g2d.setColor(Window.playerColors[cont.getLock(2).getPlayer()]);
+					g2d.setColor(Window.playerColors[cont.getLock(3).getPlayer()]);
 					g2d.fillOval(
 						(int)((i + 1) * width) + MARGIN_SIDE - BORDER_RADIUS,
 						(int)((j + 1) * height) + MARGIN_TOP - BORDER_RADIUS,
@@ -142,9 +142,9 @@ class GameCanvas extends JPanel
 					g2d.setColor(Color.black);
 				}
 
-				if (j == containers[i].length - 1 && cont.getLock(3).getPlayer() >= 0)
+				if (j == containers[i].length - 1 && cont.getLock(4).getPlayer() >= 0)
 				{
-					g2d.setColor(Window.playerColors[cont.getLock(3).getPlayer()]);
+					g2d.setColor(Window.playerColors[cont.getLock(4).getPlayer()]);
 					g2d.fillOval(
 						(int)(i * width) + MARGIN_SIDE - BORDER_RADIUS,
 						(int)((j + 1) * height) + MARGIN_TOP - BORDER_RADIUS,
