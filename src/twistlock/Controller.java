@@ -47,19 +47,15 @@ public class Controller
 			this.players[i] = new Player(players[i]);
 		}
 
-		int rowCount = (int)(Math.random() * 10) + 6;
-		int colCount = (int)(Math.random() * 8) + 3;
+		int rowCount = height;
+		int colCount = width;
 
-
-		rowCount = height;
-		colCount = width;
-
-		Twistlock[][] tls = new Twistlock[colCount + 1][rowCount + 1];
-		for (int i = 0; i < tls.length; i++)
+		Twistlock[][] twistlocks = new Twistlock[colCount + 1][rowCount + 1];
+		for (int i = 0; i < twistlocks.length; i++)
 		{
-			for (int j = 0; j < tls[i].length; j++)
+			for (int j = 0; j < twistlocks[i].length; j++)
 			{
-				tls[i][j] = new Twistlock();
+				twistlocks[i][j] = new Twistlock();
 			}
 		}
 
@@ -68,7 +64,10 @@ public class Controller
 		{
 			for (int j = 0; j < containers[i].length; j++)
 			{
-				containers[i][j] = new Container(i, j, tls[i][j], tls[i + 1][j], tls[i][j + 1], tls[i + 1][j + 1]);
+				containers[i][j] = 	new Container(i, j,
+			                        	twistlocks[i][j], twistlocks[i + 1][j],
+										twistlocks[i][j + 1], twistlocks[i + 1][j + 1]
+									);
 			}
 		}
 
