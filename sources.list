@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+=======
+src/twistlock/window/GamePanel.java
+src/twistlock/window/GameCanvas.java
+src/twistlock/window/Window.java
+src/twistlock/window/PlayerPanel.java
+src/twistlock/window/MenuPanel.java
+>>>>>>> c36f77be0dfc4ba454f4b72f4c70ddde9b1df72d
 src/twistlock/Controller.java
 src/twistlock/job/Container.java
 src/twistlock/job/Player.java

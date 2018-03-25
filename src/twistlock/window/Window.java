@@ -2,6 +2,9 @@ package twistlock.window;
 
 import javax.swing.JFrame;
 import java.awt.Color;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+
 
 /**
  * TODO
@@ -17,9 +20,15 @@ public class Window extends JFrame
 	{
 		super("TwistLock");
 
-
+		changeShownPanel(new MenuPanel());
+		changeShownPanel(new GamePanel());
 
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setVisible(true);
+	}
+
+	void changeShownPanel(JPanel pan)
+	{
+		add(pan);
 	}
 }
