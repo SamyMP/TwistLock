@@ -9,11 +9,11 @@ public class Twistlock
 	 * the id of the player currently controling the lock
 	 * -1 if not controlled yet
 	 */
-	private int controllingPlayer;
+	private int player;
 
 	public Twistlock()
 	{
-		controllingPlayer = -1;
+		player = -1;
 	}
 
 	/**
@@ -23,13 +23,18 @@ public class Twistlock
 	public void capture(Player player)
 	{
 		player.useTwistlock();
-		if (controllingPlayer == -1)
+		if (this.player == -1)
 		{
-			controllingPlayer = player.getId();
+			this.player = player.getId();
 		}
 		else
 		{
 			player.useTwistlock();
 		}
+	}
+
+	public int getPlayer()
+	{
+		return player;
 	}
 }

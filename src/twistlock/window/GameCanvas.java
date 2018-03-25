@@ -11,7 +11,6 @@ import twistlock.job.Container;
 
 /**
  * TODO
- * 		draw()
  * 		comments
  */
 class GameCanvas extends JPanel
@@ -46,8 +45,6 @@ class GameCanvas extends JPanel
 		int width = (getWidth() - 2 * MARGIN_SIDE) / containers.length;
 		int height = ((getHeight() - MARGIN_TOP - 30) / containers[0].length);
 
-		g2d.fillRect(MARGIN_SIDE, getHeight() - 30, getWidth() - 2 * MARGIN_SIDE, 30);
-
 		for (int i = 0; i < containers.length; i++)
 		{
 			for (int j = 0; j < containers[i].length; j++)
@@ -76,12 +73,12 @@ class GameCanvas extends JPanel
 					MARGIN_SIDE + (i + 1) * width - DEMI_SPACE_BETWEEN_CONTAINERS,
 					MARGIN_TOP - BORDER_RADIUS + (j + 1) * height - DEMI_SPACE_BETWEEN_CONTAINERS
 				);
+
 				g2d.drawArc(
 					MARGIN_SIDE - BORDER_RADIUS + i * width + DEMI_SPACE_BETWEEN_CONTAINERS,
 					MARGIN_TOP - BORDER_RADIUS + j * height + DEMI_SPACE_BETWEEN_CONTAINERS,
 					2 * BORDER_RADIUS,	2 * BORDER_RADIUS, 270, 90
 				);
-
 				g2d.drawArc(
 					MARGIN_SIDE - BORDER_RADIUS + (i + 1) * width - DEMI_SPACE_BETWEEN_CONTAINERS,
 					MARGIN_TOP - BORDER_RADIUS + j * height + DEMI_SPACE_BETWEEN_CONTAINERS,
@@ -98,9 +95,63 @@ class GameCanvas extends JPanel
 					2 * BORDER_RADIUS,	2 * BORDER_RADIUS, 0, 90
 				);
 
-				g2d.drawString(containers[i][j].getValue() + "", (int)((i + 0.5) * width) + MARGIN_SIDE, (int)((j + 0.5) * height) + MARGIN_TOP);
+				Container cont = containers[i][j];
 
-				
+				if (cont.getPlayer() >= 0)
+				{
+					g2d.setColor(Window.playerColors[cont.getPlayer()]);
+					g2d.fillOval(
+						(int)((i + 0.5) * width) + MARGIN_SIDE - BORDER_RADIUS,
+						(int)((j + 0.5) * height) + MARGIN_TOP - BORDER_RADIUS,
+						2 * BORDER_RADIUS, 2 * BORDER_RADIUS
+					);
+					g2d.setColor(Color.black);
+				}
+				g2d.drawString(cont.getValue() + "", (int)((i + 0.5) * width) + MARGIN_SIDE, (int)((j + 0.5) * height) + MARGIN_TOP);
+
+				if (cont.getLock(0).getPlayer() >= 0)
+				{
+					g2d.setColor(Window.playerColors[cont.getLock(0).getPlayer()]);
+					g2d.fillOval(
+						(int)(i * width) + MARGIN_SIDE - BORDER_RADIUS,
+						(int)(j * height) + MARGIN_TOP - BORDER_RADIUS,
+						2 * BORDER_RADIUS, 2 * BORDER_RADIUS
+					);
+					g2d.setColor(Color.black);
+				}
+
+				if (i == containers.length - 1 && cont.getLock(1).getPlayer() >= 0)
+				{
+					g2d.setColor(Window.playerColors[cont.getLock(1).getPlayer()]);
+					g2d.fillOval(
+						(int)((i + 1) * width) + MARGIN_SIDE - BORDER_RADIUS,
+						(int)(j * height) + MARGIN_TOP - BORDER_RADIUS,
+						2 * BORDER_RADIUS, 2 * BORDER_RADIUS
+					);
+					g2d.setColor(Color.black);
+				}
+
+				if (i == containers.length - 1 && j == containers[i].length - 1 && cont.getLock(2).getPlayer() >= 0)
+				{
+					g2d.setColor(Window.playerColors[cont.getLock(2).getPlayer()]);
+					g2d.fillOval(
+						(int)((i + 1) * width) + MARGIN_SIDE - BORDER_RADIUS,
+						(int)((j + 1) * height) + MARGIN_TOP - BORDER_RADIUS,
+						2 * BORDER_RADIUS, 2 * BORDER_RADIUS
+					);
+					g2d.setColor(Color.black);
+				}
+
+				if (j == containers[i].length - 1 && cont.getLock(3).getPlayer() >= 0)
+				{
+					g2d.setColor(Window.playerColors[cont.getLock(3).getPlayer()]);
+					g2d.fillOval(
+						(int)(i * width) + MARGIN_SIDE - BORDER_RADIUS,
+						(int)((j + 1) * height) + MARGIN_TOP - BORDER_RADIUS,
+						2 * BORDER_RADIUS, 2 * BORDER_RADIUS
+					);
+					g2d.setColor(Color.black);
+				}
 			}
 		}
 

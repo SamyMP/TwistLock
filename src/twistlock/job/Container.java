@@ -46,8 +46,26 @@ public class Container
 		player = -1;
 		this.row = row;
 		this.column = column;
-		corners = new Twistlock[] { nw, ne, sw, se };
+		corners = new Twistlock[] { nw, ne, se, sw };
 		value = (int)(Math.random() * (MAX_VALUE - MIN_VALUE + 1)) + MIN_VALUE;
+	}
+
+	/**
+	 * get the controlling player id
+	 * @return the controlling player id
+	 */
+	public int getPlayer()
+	{
+		return player;
+	}
+
+	/**
+	 * get the controlling player id
+	 * @return the controlling player id
+	 */
+	public Twistlock getLock(int pos)
+	{
+		return corners[pos];
 	}
 
 	/**

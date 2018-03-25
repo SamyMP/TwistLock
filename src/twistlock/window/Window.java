@@ -11,7 +11,7 @@ import java.awt.BorderLayout;
  */
 public class Window extends JFrame
 {
-	private static final Color[] playerColors =
+	static final Color[] playerColors =
 		new Color[] { Color.red, Color.green, Color.blue, Color.yellow };
 
 	JFrame frame;
