@@ -1,9 +1,9 @@
-src/twistlock/window/GamePanel.java
-src/twistlock/window/GameCanvas.java
-src/twistlock/window/Window.java
-src/twistlock/window/PlayerPanel.java
-src/twistlock/window/MenuPanel.java
 src/twistlock/Controller.java
+src/twistlock/job/Container.java
 src/twistlock/job/Player.java
 src/twistlock/job/Twistlock.java
-src/twistlock/job/Container.java
+src/twistlock/window/GameCanvas.java
+src/twistlock/window/GamePanel.java
+src/twistlock/window/MenuPanel.java
+src/twistlock/window/PlayerPanel.java
+src/twistlock/window/Window.java
