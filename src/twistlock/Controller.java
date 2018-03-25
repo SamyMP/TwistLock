@@ -1,9 +1,9 @@
 package twistlock;
 
-import twistlock.window.Window;
 import twistlock.job.Container;
 import twistlock.job.Player;
 import twistlock.job.Twistlock;
+import twistlock.window.Window;
 
 /**
  * TODO
