@@ -65,7 +65,23 @@ public class Container
 	 */
 	public Twistlock getLock(int pos)
 	{
-		return corners[pos];
+		try
+		{
+			return corners[pos];
+		}
+		catch (Exception e)
+		{
+			return null;
+		}
+	}
+
+	public void capture(int pos, Player player)
+	{
+		Twistlock lock = getLock(pos);
+		if (lock != null)
+		{
+			lock.capture(player);
+		}
 	}
 
 	/**

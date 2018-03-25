@@ -23,6 +23,8 @@ public class Window extends JFrame
 		changeShownPanel(new MenuPanel());
 		changeShownPanel(new GamePanel());
 
+		setSize(800, 600);
+
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setVisible(true);
 	}

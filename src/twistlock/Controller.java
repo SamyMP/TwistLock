@@ -14,10 +14,11 @@ public class Controller
 
 	private Player[] players;
 	private Container[][] containers;
+	private Window window;
 
 	private Controller()
 	{
-		new Window();
+		window = new Window();
 	}
 
 	public static Controller getController()
@@ -30,6 +31,12 @@ public class Controller
 
 	public void createGame(String... players)
 	{
+		this.players = new Player[players.length];
+		for (int i = 0; i < this.players.length; i++)
+		{
+			this.players[i] = new Player(players[i]);
+		}
+
 		int rowCount = (int)(Math.random() * 10) + 6;
 		int colCount = (int)(Math.random() * 8) + 3;
 
@@ -47,7 +54,7 @@ public class Controller
 		{
 			for (int j = 0; j < containers[i].length; j++)
 			{
-				containers[i][j] = new Container(i, j, tls[i][j], tls[i][j + 1], tls[i + 1][j], tls[i + 1][j + 1]);
+				containers[i][j] = new Container(i, j, tls[i][j], tls[i + 1][j], tls[i][j + 1], tls[i + 1][j + 1]);
 			}
 		}
 	}
@@ -64,7 +71,7 @@ public class Controller
 
 	public static void main(String[] args)
 	{
-		getController().createGame("Adam", "Jonat");
+		getController().createGame("Adam", "Jonat", "Martin", "Samy");
 
 	}
 }
