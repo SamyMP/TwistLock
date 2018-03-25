@@ -1,4 +1,5 @@
 src/twistlock/window/GamePanel.java
+src/twistlock/window/GameCanvas.java
 src/twistlock/window/Window.java
 src/twistlock/window/PlayerPanel.java
 src/twistlock/window/MenuPanel.java
