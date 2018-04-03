@@ -1,5 +1,8 @@
 package twistlock.job;
 
+import twistlock.Controller;
+import twistlock.util.InetAddressWithPort;
+
 /**
  * class representing player
  * contain pseudo, score, ...
@@ -9,110 +12,168 @@ package twistlock.job;
 public class Player
 {
 	/**
-	 * the id of the player (used to get his color)
+	 * The id of the player (used to get his color).
 	 */
-	private int id;
+	private int 		id;
 	/**
-	 * incremental value used to set id of new instances
+	 * Incremental value used to set id of new instances.
 	 */
-	private static int staticId = 0;
+	private static int 	staticId = 0;
+	/**
+	 * The pseudo of the player.
+	 */
+	private String 		pseudo;
+	/**
+	 * The score of the player.
+	 */
+	private int 		score;
+	/**
+	 * The number of twistlocks left for this player.
+	 */
+	private int 		twistlock;
+	/**
+	 * The number of twistlocks the player has at it's creation.
+	 */
+	private int 		initialTwistlock;
+
+	private InetAddressWithPort inetAddressWithPort;
+
 
 	/**
-	 * the pseudo of the player
+	 * Creates a new instance of player.
+	 * @param pseudo            The pseudo of the player to create.
+	 * @param initialTwistlock	The number of twistlock the player possess at its creation.
 	 */
-	private String pseudo;
-
-	/**
-	 * the score of the player
-	 */
-	private int score;
-
-	/**
-	 * the number of twistlocks left for this player
-	 */
-	private int twistlock;
-	/**
-	 * the number of twistlocks the player has at it's creation
-	 */
-	private int initialTwistlock;
-
-	/**
-	 * create a new instance of player
-	 * @param pseudo            the pseudo of the player to create
-	 * @param twistlockQuantity the number of twistlock the player posses at its creation
-	 */
-	public Player(String pseudo, int initialTwistlock)
+	public Player (String pseudo, int initialTwistlock, InetAddressWithPort address)
 	{
-		id = staticId++;
-		this.pseudo = pseudo;
+		this.id 		= staticId++;
+		this.pseudo 	= pseudo;
 		this.initialTwistlock = initialTwistlock;
-		twistlock = initialTwistlock;
-		score = 0;
+		this.twistlock 	= initialTwistlock;
+		this.score 		= 0;
+		this.inetAddressWithPort = address;
 	}
 
 	/**
-	 * create a new instance of player
-	 * @param pseudo the pseudo of the player to create
+	 * Creates a new instance of player.
+	 * @param pseudo The pseudo of the player to create.
 	 */
-	public Player(String pseudo)
+	public Player (String pseudo, InetAddressWithPort address)
 	{
-		this(pseudo, 20);
+		this(pseudo, 20, address);
 	}
 
-	public int getId()
+	public InetAddressWithPort getInetAddress()
 	{
-		return id;
+		return inetAddressWithPort;
 	}
 
 	/**
-	 * reset the number of twistlocks to it's value at player's creation
+	 * Reset the static id to create a new game.
 	 */
-	public void resetTwistlock()
+	public static void resetId ()
+	{
+		staticId = 0;
+	}
+
+	/**
+	 * Resets the number of twistlocks to its initial value.
+	 */
+	public void resetTwistlock ()
 	{
 		resetTwistlock(initialTwistlock);
 	}
 
 	/**
-	 * set the number of twistlocks to the specified value
-	 * @param value the value to set twistlocks to
+	 * Sets the number of twistlocks to the specified value.
+	 * @param value The new value of twistlocks.
 	 */
-	public void resetTwistlock(int value)
+	public void resetTwistlock (int value)
 	{
 		twistlock = value;
 	}
 
 	/**
-	 * method called when a twistlock is used
-	 * 	do : twistlock--
+	 * Method called when the twislock is used.
 	 */
-	public void useTwistlock()
+	public void useTwistlock ()
 	{
-		twistlock--;
+		this.useTwistlock(1);
 	}
 
 	/**
-	 * method used to know if player has at least one twistlock left
-	 * @return [description]
+	 * Spends a specified number of twistlocks.
+	 * @param number The number of twistlocks to consume.
 	 */
-	public boolean hasTwistlock()
+	public void useTwistlock (int number)
+	{
+		this.twistlock = this.twistlock - number;
+	}
+
+	/**
+	 * Check if the player has twistlocks left.
+	 * @return True if the player still has twistlocks, otherwise false.
+	 */
+	public boolean hasTwistlock ()
 	{
 		return twistlock > 0;
 	}
 
 	/**
-	 * reset the score of this player to 0
+	 * Resets the score of this player to 0
 	 */
-	public void resetScore()
+	public void resetScore ()
 	{
 		score = 0;
 	}
 
 	/**
-	 * add the specified value to the score of this player
-	 * @param value value to add to player score
+	 * Adds the specified value to the score of this player.
+	 * @param value Value to add to the player's score.
 	 */
-	public void addScore(int value)
+	public void addScore (int value)
 	{
 		score += value;
+	}
+
+
+	/*---------------*/
+	/*    GETTERS    */
+	/*---------------*/
+
+	/**
+	 * return the number of locks lefts
+	 * @return the number of licks lefts
+	 */
+	public int getTwistLock()
+	{
+		return twistlock;
+	}
+
+	/**
+	 * Gets the id of the player.
+	 * @return Id of the player.
+	 */
+	public int getId ()
+	{
+		return id;
+	}
+
+	/**
+	 * Returns the pseudo.
+	 * @return The pseudo of the player.
+	 */
+	public String getPseudo()
+	{
+		return pseudo;
+	}
+
+	/**
+	 * Returns the score.
+	 * @return The score of the player.
+	 */
+	public int getScore()
+	{
+		return score;
 	}
 }

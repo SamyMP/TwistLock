@@ -1,4 +1,4 @@
-package twistlock.job;
+package client.job;
 
 
 /**
@@ -11,7 +11,7 @@ public class Twistlock
 	/**
 	 * The id of the owner owning the lock, equals to -1 if the lock is not owned.
 	 */
-	private int owner;
+	private int 		owner;
 	/** Containers adjacent to the lock. */
 	private Container[] containers;
 
@@ -19,7 +19,7 @@ public class Twistlock
 	/**
 	 * Creates a new twistlock with no owner and an empty
 	 */
-	public Twistlock()
+	public Twistlock ()
 	{
 		this.owner 	= -1;
 		this.containers = new Container[0];
@@ -45,18 +45,16 @@ public class Twistlock
 	 * @param owner Index of the new owner.
      * @return True if the capture succeeded, otherwise false.
 	 */
-	public boolean capture (Player owner)
+	public boolean capture (int owner)
 	{
-		owner.useTwistlock();
 		if (this.owner == -1)
 		{
-			this.owner = owner.getId();
+			this.owner = owner;
 			for (Container container : containers) { container.calcOwner(); }
 			return true;
 		}
 		else
 		{
-			owner.useTwistlock();
 			return false;
 		}
 	}

@@ -1,36 +1,66 @@
 package twistlock.window;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 import java.awt.Color;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 
 /**
- * TODO
+ * Only window of the user interface of the game.
+ * @author Javane
+ * @version 2018-03-26
  */
 public class Window extends JFrame
 {
-	static final Color[] playerColors =
-		new Color[] { Color.red, Color.green, Color.blue, Color.yellow };
+	/** Colors of the players, in the order of their index */
+	static final 	Color[] playerColors 	= new Color[] { Color.red, Color.green };
+	/** The swing frame wrapped by the {@link Window}. */
+	private 		JFrame 	frame;
 
-	JFrame frame;
 
-	public Window()
+	/**
+	 * Creates the window which will be containing the entire user interface.
+	 */
+	public Window ()
 	{
 		super("TwistLock");
 
-		changeShownPanel(new MenuPanel());
-		changeShownPanel(new GamePanel());
+		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		this.setToMenu();
 
-		setSize(800, 600);
-
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		setVisible(true);
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
 	}
 
-	void changeShownPanel(JPanel pan)
+	/**
+	 * Sets the main display to the menu.
+	 */
+	public void setToMenu ()
 	{
-		add(pan);
+		this.changeShownPanel( new MenuPanel() );
+		this.pack();
+	}
+
+	/**
+	 * Sets the main display to the game.
+	 */
+	public void setToGame ()
+	{
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+		GamePanel gp = new GamePanel();
+		this.changeShownPanel(gp);
+	}
+
+	/**
+	 * Sets the main panel of the window to the panel passed as parameter.
+	 * @param pan Panel to display in the window.
+	 */
+	void changeShownPanel (JPanel pan)
+	{
+		this.setContentPane(pan);
+		SwingUtilities.updateComponentTreeUI(this);
 	}
 }

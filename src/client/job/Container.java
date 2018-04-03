@@ -1,9 +1,8 @@
-package twistlock.job;
+package client.job;
 
 
 import java.util.HashMap;
 import java.util.Map;
-import twistlock.Controller;
 
 /**
  * Single twistlock container of the game.
@@ -50,17 +49,19 @@ public class Container
 	 * @param sw Linked lock placed on the southwest.
 	 * @param se Linked lock placed on the southeast.
 	 */
-	public Container (int row, int column, Twistlock nw, Twistlock ne, Twistlock sw, Twistlock se)
+	public Container (int row, int column, int value, Twistlock nw, Twistlock ne, Twistlock sw, Twistlock se)
 	{
 		this.owner 		= -1;
 		this.row 		= row;
 		this.column 	= column;
+
 		nw.addContainer(this);
 		ne.addContainer(this);
 		se.addContainer(this);
 		sw.addContainer(this);
+
 		this.corners 	= new Twistlock[] { nw, ne, se, sw };
-		this.value 		= (int)(Math.random() * (MAX_VALUE - MIN_VALUE + 1)) + MIN_VALUE;
+		this.value 		= value;
 	}
 
 
@@ -70,7 +71,7 @@ public class Container
 	 * @param player Player to set as the owner of the lock.
 	 * @return True if the capture succeeded, otherwise false.
 	 */
-	public boolean capture (int pos, Player player)
+	public boolean capture (int pos, int player)
 	{
 		Twistlock lock = getLock(pos);
 		if (lock != null)
@@ -85,7 +86,16 @@ public class Container
 	 */
 	public void calcOwner ()
 	{
+		this.owner = calcOwner (new HashMap<Integer, Integer>());
+	}
+
+	public int calcOwner (Map<Integer, Integer> controlSupp)
+	{
+
 		Map<Integer, Integer> control = new HashMap<Integer, Integer>();
+		for (Integer i : controlSupp.keySet())
+			control.put(i, new Integer( controlSupp.get(i) ));
+
 		for (Twistlock twistlock : corners)
 		{
 			if (control.get(twistlock.getOwner()) == null)
@@ -113,15 +123,8 @@ public class Container
 				}
 			}
 		}
-		if (this.owner != -1)
-		{
-			Controller.getController().getPlayers()[this.owner].addScore(-value);
-		}
-		this.owner = maxId;
-		if (this.owner != -1)
-		{
-			Controller.getController().getPlayers()[this.owner].addScore(value);
-		}
+
+		return maxId;
 	}
 
 
@@ -135,6 +138,7 @@ public class Container
 	 */
 	public int getOwner ()
 	{
+		this.calcOwner();
 		return owner;
 	}
 

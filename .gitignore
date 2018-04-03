@@ -1,3 +1,7 @@
 # ignore les classes compilée qui seront compiles sur le pc du développeur afin d'éviter la surcharge a chaque commit
 /bin/*
 !/bin/creatingFolderFile
+
+/.idea/*
+/sources.list
+sources.list
